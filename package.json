@@ -1,6 +1,6 @@
 {
   "name": "@mochila/n8n-nodes-jetnet",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Enterprise-grade n8n integration nodes for JetNet Aviation API - Comprehensive aircraft data, market intelligence, and AI-powered workflow automation",
   "keywords": [
     "n8n",
