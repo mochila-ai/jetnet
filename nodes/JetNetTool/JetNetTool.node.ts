@@ -21,7 +21,8 @@ export class JetNetTool implements INodeType {
 			name: 'JetNet Tool',
 		},
 		inputs: ['main'],
-		outputs: ['ai_tool'],
+		// eslint-disable-next-line n8n-nodes-base/node-class-description-outputs-wrong
+	outputs: ['ai_tool'],
 		outputNames: ['Tool'],
 		credentials: [
 			{
@@ -262,40 +263,36 @@ class JetNetApiTool extends Tool {
 		body: IDataObject,
 		qs: IDataObject
 	): Promise<any> {
-		try {
-			// Access credentials
-			const credentials = await this.executeFunctions.getCredentials('jetNetApi');
-			
-			// Build the full URL with security token
-			const baseUrl = 'https://customer.jetnetconnect.com';
-			const securityToken = credentials.securityToken as string;
-			const fullUrl = `${baseUrl}${endpoint}/${securityToken}`;
-			
-			// Prepare options for the HTTP request
-			const options: any = {
-				method,
-				uri: fullUrl,
-				json: true,
-				headers: {
-					'Authorization': `Bearer ${credentials.bearerToken}`,
-					'Content-Type': 'application/json',
-				},
-			};
-			
-			if (method === 'GET') {
-				options.qs = qs;
-			} else {
-				options.body = body;
-			}
-			
-			// Make the request using the helper function
-			const helpers = this.executeFunctions.helpers;
-			const response = await helpers.httpRequest(options);
-			
-			return response;
-		} catch (error) {
-			throw error;
+		// Access credentials
+		const credentials = await this.executeFunctions.getCredentials('jetNetApi');
+		
+		// Build the full URL with security token
+		const baseUrl = 'https://customer.jetnetconnect.com';
+		const securityToken = credentials.securityToken as string;
+		const fullUrl = `${baseUrl}${endpoint}/${securityToken}`;
+		
+		// Prepare options for the HTTP request
+		const options: any = {
+			method,
+			uri: fullUrl,
+			json: true,
+			headers: {
+				'Authorization': `Bearer ${credentials.bearerToken}`,
+				'Content-Type': 'application/json',
+			},
+		};
+		
+		if (method === 'GET') {
+			options.qs = qs;
+		} else {
+			options.body = body;
 		}
+		
+		// Make the request using the helper function
+		const helpers = this.executeFunctions.helpers;
+		const response = await helpers.httpRequest(options);
+		
+		return response;
 	}
 
 	async _call(input: string | { [key: string]: any }): Promise<string> {
@@ -312,7 +309,7 @@ class JetNetApiTool extends Tool {
 					// For registration number searches, extract the registration
 					if (this.operation === 'getByRegistration') {
 						// Extract registration number from natural language
-						const match = input.match(/\b[A-Z0-9\-]+\b/);
+						const match = input.match(/\b[A-Z0-9-]+\b/);
 						if (match) {
 							parsedInput.registrationNumber = match[0];
 						}
@@ -344,13 +341,14 @@ class JetNetApiTool extends Tool {
 							allrelationships: parsedInput.allRelationships !== false,
 						};
 						break;
-					case 'getByRegistration':
+					case 'getByRegistration': {
 						const regNum = parsedInput.registrationNumber || parsedInput.registration || parsedInput.reg || '';
 						if (!regNum) {
 							throw new Error('Registration number is required for this operation');
 						}
 						endpoint = `/api/Aircraft/getRegNumber/${regNum}`;
 						break;
+					}
 					default:
 						throw new Error(`Unknown aircraft operation: ${this.operation}`);
 				}
