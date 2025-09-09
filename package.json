@@ -28,9 +28,7 @@
   ],
   "license": "MIT",
   "homepage": "https://github.com/mochila-ai/jetnet",
-  "author": {
-    "name": "Matt Busi"
-  },
+  "author": "Matt Busi",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mochila-ai/jetnet.git"
