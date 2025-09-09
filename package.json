@@ -78,7 +78,7 @@
     ]
   },
   "dependencies": {
-    "@langchain/core": "^0.1.63"
+    "@langchain/core": "^0.3.75"
   },
   "devDependencies": {
     "@eslint/js": "^9.35.0",
