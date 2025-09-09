@@ -115,7 +115,7 @@ jobs:
         echo "**Full Changelog**: https://github.com/${{ github.repository }}/compare/$(git describe --tags --abbrev=0 HEAD^)...${{ steps.version.outputs.tag }}" >> changelog.md 2>/dev/null || true
     
     - name: Create GitHub Release
-      uses: softprops/action-gh-release@v1
+      uses: softprops/action-gh-release@v2
       with:
         tag_name: ${{ steps.version.outputs.tag }}
         name: Release ${{ steps.version.outputs.tag }}
