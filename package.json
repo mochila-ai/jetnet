@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yourusername/n8n-nodes-jetnet.git"
+    "url": "git+https://github.com/mochila-ai/jetnet.git"
   },
   "main": "index.js",
   "scripts": {
