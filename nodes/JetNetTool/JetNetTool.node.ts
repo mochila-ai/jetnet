@@ -8,7 +8,7 @@ import {
 	IHttpRequestMethods,
 } from 'n8n-workflow';
 
-import { jetNetApiRequest, jetNetApiRequestAllItems, formatJetNetResponse } from '../JetNet/JetNetApiRequest';
+import { jetNetApiRequest } from '../JetNet/JetNetApiRequest';
 
 function generateAutoDescription(resource: string, operation: string): string {
 	const descriptions: { [key: string]: string } = {
@@ -104,8 +104,8 @@ export class JetNetTool implements INodeType {
 		defaults: {
 			name: 'JetNet Tool',
 		},
-		inputs: [],
-		outputs: ['ai_tool'],
+		inputs: ['main'],
+		outputs: ['main'],
 		credentials: [
 			{
 				name: 'jetNetApi',

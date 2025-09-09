@@ -6,12 +6,9 @@ import {
 	NodeOperationError,
 	IDataObject,
 	IHttpRequestMethods,
-	IHttpRequestOptions,
-	ICredentialsDecrypted,
-	ICredentialDataDecryptedObject,
 } from 'n8n-workflow';
 
-import { jetNetApiRequest, jetNetApiRequestAllItems, formatJetNetResponse } from './JetNetApiRequest';
+import { jetNetApiRequest } from './JetNetApiRequest';
 
 export class JetNet implements INodeType {
 	description: INodeTypeDescription = {
@@ -1778,7 +1775,7 @@ export class JetNet implements INodeType {
 						case 'get':
 							endpoint = `/api/Aircraft/getAircraft/${this.getNodeParameter('aircraftId', itemIndex)}`;
 							break;
-						case 'getList':
+						case 'getList': {
 							endpoint = '/api/Aircraft/getAircraftList';
 							method = 'POST';
 							const aircraftFields = this.getNodeParameter('additionalFields', itemIndex, {}) as IDataObject;
@@ -1793,6 +1790,7 @@ export class JetNet implements INodeType {
 								allrelationships: true,
 							}, aircraftFields);
 							break;
+						}
 						case 'getByRegistration':
 							endpoint = `/api/Aircraft/getRegNumber/${this.getNodeParameter('registrationNumber', itemIndex)}`;
 							break;
@@ -1891,7 +1889,7 @@ export class JetNet implements INodeType {
 						case 'get':
 							endpoint = `/api/Company/getCompany/${this.getNodeParameter('companyId', itemIndex)}`;
 							break;
-						case 'getList':
+						case 'getList': {
 							endpoint = '/api/Company/getCompanyList';
 							method = 'POST';
 							const companyFields = this.getNodeParameter('additionalFields', itemIndex, {}) as IDataObject;
@@ -1903,6 +1901,7 @@ export class JetNet implements INodeType {
 								businesstype: '',
 							}, companyFields);
 							break;
+						}
 						case 'getIdentification':
 							endpoint = `/api/Company/getIdentification/${this.getNodeParameter('companyId', itemIndex)}`;
 							break;
@@ -1944,7 +1943,7 @@ export class JetNet implements INodeType {
 						case 'getIdentification':
 							endpoint = `/api/Contact/getIdentification/${this.getNodeParameter('contactId', itemIndex)}`;
 							break;
-						case 'getList':
+						case 'getList': {
 							endpoint = '/api/Contact/getContactList';
 							method = 'POST';
 							const contactFields = this.getNodeParameter('additionalFields', itemIndex, {}) as IDataObject;
@@ -1963,7 +1962,8 @@ export class JetNet implements INodeType {
 								complist: contactFields.companyList || [],
 							};
 							break;
-						case 'getListPaged':
+						}
+						case 'getListPaged': {
 							endpoint = `/api/Contact/getContactListPaged/${this.getNodeParameter('pageSize', itemIndex)}/${this.getNodeParameter('page', itemIndex)}`;
 							method = 'POST';
 							const contactPagedFields = this.getNodeParameter('additionalFields', itemIndex, {}) as IDataObject;
@@ -1982,6 +1982,7 @@ export class JetNet implements INodeType {
 								complist: contactPagedFields.companyList || [],
 							};
 							break;
+						}
 						case 'getOtherListings':
 							endpoint = `/api/Contact/getOtherlistings/${this.getNodeParameter('contactId', itemIndex)}`;
 							break;

@@ -1,5 +1,6 @@
 # JetNet n8n Integration Nodes
 
+[![npm version](https://badge.fury.io/js/n8n-nodes-jetnet.svg)](https://www.npmjs.com/package/n8n-nodes-jetnet)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![n8n](https://img.shields.io/badge/n8n-compatible-orange.svg)](https://n8n.io)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue.svg)](https://www.typescriptlang.org/)
@@ -69,13 +70,28 @@ The AI-optimized JetNetTool node enables intelligent automation through n8n's AI
 - Conversational interfaces
 - Dynamic data retrieval based on context
 
+## Requirements
+
+- **n8n**: Version 1.0.0 or higher
+- **Node.js**: Version 18.0.0 or higher
+- **JetNet API Access**: Valid JetNet API credentials
+- **Memory**: Minimum 512MB RAM recommended for large data operations
+
 ## Installation
 
-### Prerequisites
+### Install via npm (Recommended)
 
-- n8n instance (v1.0.0 or higher)
-- Node.js 18.x or higher
-- JetNet API credentials
+```bash
+npm install n8n-nodes-jetnet
+```
+
+### Install via n8n GUI
+
+1. Open your n8n instance
+2. Go to **Settings** → **Community Nodes**
+3. Search for `n8n-nodes-jetnet`
+4. Click **Install**
+5. Restart n8n when prompted
 
 ### Docker Installation
 
@@ -99,7 +115,7 @@ npm install n8n-nodes-jetnet
 ### Development Installation
 
 ```bash
-# Clone the repository
+# Clone the repository (private repo - requires access)
 git clone https://github.com/mochila-ai/jetnet.git
 cd jetnet
 npm install

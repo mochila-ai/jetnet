@@ -7,6 +7,22 @@ import {
 	JsonObject,
 } from 'n8n-workflow';
 
+// Security: Sanitize error messages to remove sensitive information
+function sanitizeError(error: any): string {
+	let message = error.message || error.toString();
+	// Remove Bearer tokens
+	message = message.replace(/Bearer\s+[\w\-.]+/gi, 'Bearer [REDACTED]');
+	// Remove API tokens
+	message = message.replace(/apiToken[=:]\s*[\w-]+/gi, 'apiToken=[REDACTED]');
+	// Remove URLs with tokens
+	message = message.replace(/https?:\/\/[^\s]*token[^\s]*/gi, '[URL_REDACTED]');
+	// Remove passwords
+	message = message.replace(/password[=:]\s*["']?[\w-]+["']?/gi, 'password=[REDACTED]');
+	// Remove email addresses in auth context
+	message = message.replace(/emailaddress[=:]\s*["']?[^"'\s]+["']?/gi, 'emailaddress=[REDACTED]');
+	return message;
+}
+
 // Cache for tokens (stores both Bearer token and API token)
 interface TokenCache {
 	bearerToken: string;
@@ -49,6 +65,7 @@ export async function jetNetApiRequest(
 		body,
 		qs,
 		json: true,
+		timeout: 60000, // 60 seconds default timeout
 	};
 
 	try {
@@ -73,7 +90,10 @@ export async function jetNetApiRequest(
 			return formatJetNetResponse(response);
 		}
 		
-		throw new NodeApiError(this.getNode(), error as JsonObject);
+		throw new NodeApiError(this.getNode(), {
+			message: sanitizeError(error),
+			description: error.description ? sanitizeError(error.description) : undefined,
+		} as JsonObject);
 	}
 }
 
@@ -147,7 +167,7 @@ async function getTokens(
 	} catch (error: any) {
 		throw new NodeApiError(this.getNode(), {
 			message: 'Authentication failed',
-			description: `Failed to authenticate with JetNet API: ${error.message || error}`,
+			description: `Failed to authenticate with JetNet API: ${sanitizeError(error)}`,
 		} as JsonObject);
 	}
 }
@@ -269,6 +289,7 @@ export function formatJetNetResponse(response: any): any {
 		}
 
 		// If no specific result field found, remove wrapper fields and return the rest
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		const { responseid, responsestatus, ...cleanedData } = response;
 		
 		// If there's only one remaining field, extract its value

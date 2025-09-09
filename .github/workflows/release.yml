@@ -1,0 +1,64 @@
+name: Release
+
+on:
+  release:
+    types: [created]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to publish (e.g., 0.1.0)'
+        required: true
+        type: string
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20.x'
+        registry-url: 'https://registry.npmjs.org'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Run linting
+      run: npm run lint
+    
+    - name: Build
+      run: npm run build
+    
+    - name: Run tests
+      run: npm test -- --passWithNoTests
+    
+    - name: Set version from input
+      if: github.event_name == 'workflow_dispatch'
+      run: npm version ${{ github.event.inputs.version }} --no-git-tag-version
+    
+    - name: Publish to npm
+      run: npm publish
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+    
+    - name: Create GitHub Release Assets
+      if: github.event_name == 'release'
+      run: |
+        npm pack
+        tar_file=$(ls *.tgz)
+        echo "TAR_FILE=$tar_file" >> $GITHUB_ENV
+    
+    - name: Upload Release Asset
+      if: github.event_name == 'release'
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ github.event.release.upload_url }}
+        asset_path: ./${{ env.TAR_FILE }}
+        asset_name: ${{ env.TAR_FILE }}
+        asset_content_type: application/gzip

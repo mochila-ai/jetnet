@@ -1,0 +1,65 @@
+# Source files (only dist is needed)
+nodes/
+credentials/
+tests/
+*.ts
+!*.d.ts
+
+# Configuration files
+.eslintrc*
+eslint.config.mjs
+jest.config.js
+tsconfig.json
+.prettierrc*
+
+# Git and GitHub
+.git/
+.github/
+.gitignore
+
+# Documentation (optional - keep README and LICENSE)
+CONTRIBUTING.md
+TEST_RESULTS.md
+RESPONSE_FORMATTING_FIX.md
+SECURITY.md
+
+# Test files
+test-*.json
+test-*.js
+test-workflows/
+
+# Build artifacts
+*.tgz
+
+# Development files
+.env*
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Coverage
+coverage/
+.nyc_output/
+
+# Temporary files
+tmp/
+temp/
+
+# Mac/Windows/Linux system files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.directory
+.Trash-*
+.AppleDouble
+.LSOverride
