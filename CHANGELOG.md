@@ -5,6 +5,17 @@ All notable changes to the JetNet n8n integration nodes will be documented in th
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.1] - 2025-09-09
+
+### Changed
+- Made GitHub repository public for n8n verification process
+- Updated package metadata for community node verification
+- Repository now accessible at https://github.com/mochila-ai/jetnet
+
+### Fixed
+- GitHub repository visibility for n8n automated verification
+- Credential file detection in verification process
+
 ## [0.1.0] - 2025-09-09
 
 ### Added
