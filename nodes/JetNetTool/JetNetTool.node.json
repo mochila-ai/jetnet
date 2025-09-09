@@ -3,15 +3,11 @@
 	"nodeVersion": "1.0",
 	"codexVersion": "1.0",
 	"categories": [
-		"Development",
-		"Data & Storage"
+		"AI"
 	],
 	"subcategories": {
-		"Development": [
-			"AI Agents & Agents"
-		],
-		"Data & Storage": [
-			"Databases"
+		"AI": [
+			"Tools"
 		]
 	},
 	"resources": {
@@ -31,6 +27,8 @@
 		"Aircraft",
 		"JetNet",
 		"Flight Data",
-		"Aviation Intelligence"
+		"Aviation Intelligence",
+		"AI Tool",
+		"LangChain"
 	]
 }
