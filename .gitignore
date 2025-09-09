@@ -29,9 +29,11 @@ dist/
 !package-lock.json
 !tsconfig.json
 
-# Documentation files at root level (except README)
+# Documentation files at root level (except README, CONTRIBUTING, and CHANGELOG)
 /*.md
 !README.md
+!CONTRIBUTING.md
+!CHANGELOG.md
 
 # Test workflows (keep for repository)
 # test-workflows/

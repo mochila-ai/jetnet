@@ -1,17 +1,32 @@
 {
   "name": "n8n-nodes-jetnet",
   "version": "0.1.0",
-  "description": "n8n nodes for JetNet API integration",
+  "description": "Enterprise-grade n8n integration nodes for JetNet Aviation API - Comprehensive aircraft data, market intelligence, and AI-powered workflow automation",
   "keywords": [
     "n8n",
+    "n8n-node",
+    "n8n-community-node",
     "nodemation",
-    "nodes",
     "workflow",
+    "workflow-automation",
     "jetnet",
-    "aviation"
+    "aviation",
+    "aviation-api",
+    "aircraft",
+    "aircraft-data",
+    "market-intelligence",
+    "api-integration",
+    "typescript",
+    "ai-tools",
+    "langchain",
+    "automation",
+    "enterprise-integration",
+    "aviation-industry",
+    "flight-data",
+    "aerospace"
   ],
   "license": "MIT",
-  "homepage": "https://jetnet.com",
+  "homepage": "https://github.com/mochila-ai/jetnet",
   "author": {
     "name": "Matt Busi",
     "email": "matt@shadowrock.io"
@@ -19,6 +34,9 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mochila-ai/jetnet.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mochila-ai/jetnet/issues"
   },
   "main": "index.js",
   "scripts": {
