@@ -29,13 +29,12 @@ dist/
 !package-lock.json
 !tsconfig.json
 
-# Documentation files at root level (except README, CONTRIBUTING, CHANGELOG, SECURITY, and guides)
+# Documentation files at root level (except README, CONTRIBUTING, CHANGELOG, and SECURITY)
 /*.md
 !README.md
 !CONTRIBUTING.md
 !CHANGELOG.md
 !SECURITY.md
-!OPENAPI-TO-N8N-GUIDE.md
 
 # Test workflows (keep for repository)
 # test-workflows/
