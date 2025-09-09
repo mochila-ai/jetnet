@@ -1,0 +1,61 @@
+version: 2
+updates:
+  # Enable version updates for npm dependencies
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "03:00"
+    open-pull-requests-limit: 10
+    reviewers:
+      - "mtebusi"
+    labels:
+      - "dependencies"
+      - "npm"
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+    ignore:
+      # Ignore major version updates for critical dependencies
+      - dependency-name: "n8n-workflow"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "n8n-core"
+        update-types: ["version-update:semver-major"]
+    groups:
+      # Group all development dependencies together
+      dev-dependencies:
+        patterns:
+          - "@types/*"
+          - "eslint*"
+          - "prettier*"
+          - "jest*"
+          - "ts-*"
+        update-types:
+          - "minor"
+          - "patch"
+      # Group TypeScript and related tools
+      typescript:
+        patterns:
+          - "typescript"
+          - "@typescript-eslint/*"
+        update-types:
+          - "minor"
+          - "patch"
+
+  # Enable version updates for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "03:00"
+    open-pull-requests-limit: 5
+    reviewers:
+      - "mtebusi"
+    labels:
+      - "dependencies"
+      - "github-actions"
+    commit-message:
+      prefix: "ci"
+      include: "scope"
