@@ -70,4 +70,6 @@ Follow conventional commit format:
 
 ## Questions
 
-For questions about contributing, please contact Matt Busi at matt@shadowrock.io
+For questions about contributing, please:
+- Open an issue on [GitHub](https://github.com/mochila-ai/jetnet/issues)
+- Contact via GitHub [@mtebusi](https://github.com/mtebusi)

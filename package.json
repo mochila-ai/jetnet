@@ -28,8 +28,7 @@
   "license": "MIT",
   "homepage": "https://github.com/mochila-ai/jetnet",
   "author": {
-    "name": "Matt Busi",
-    "email": "matt@shadowrock.io"
+    "name": "Matt Busi"
   },
   "repository": {
     "type": "git",

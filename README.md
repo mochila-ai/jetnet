@@ -385,7 +385,7 @@ n8n start
 
 For issues or questions:
 - Open an issue on [GitHub](https://github.com/mochila-ai/jetnet/issues)
-- Contact Matt Busi at matt@shadowrock.io
+- Contact via GitHub [@mtebusi](https://github.com/mtebusi)
 
 ## Contributing
 
