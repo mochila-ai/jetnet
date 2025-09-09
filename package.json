@@ -44,7 +44,8 @@
     "access": "public"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && npm run copy-assets",
+    "copy-assets": "mkdir -p dist/nodes/JetNet dist/nodes/JetNetTool && cp nodes/JetNet/*.svg dist/nodes/JetNet/ 2>/dev/null; cp nodes/JetNetTool/*.svg dist/nodes/JetNetTool/ 2>/dev/null || true",
     "dev": "tsc --watch",
     "format": "prettier --write '**/*.ts'",
     "lint": "eslint .",
