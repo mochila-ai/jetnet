@@ -1,0 +1,155 @@
+{
+  "name": "JetNet Data Enrichment Example",
+  "nodes": [
+    {
+      "parameters": {},
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "resource": "aircraft",
+        "operation": "getAircraftList",
+        "securityToken": "{{ $credentials.jetNetApi.apiToken }}",
+        "additionalFields": {
+          "pageNumber": 1,
+          "pageSize": 5,
+          "forSale": true
+        }
+      },
+      "name": "Get Aircraft For Sale",
+      "type": "n8n-nodes-jetnet.jetNet",
+      "typeVersion": 1,
+      "position": [450, 300],
+      "credentials": {
+        "jetNetApi": {
+          "id": "1",
+          "name": "JetNet API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "company",
+        "operation": "getCompanyById",
+        "companyId": "{{ $json.ownerId }}",
+        "securityToken": "{{ $credentials.jetNetApi.apiToken }}"
+      },
+      "name": "Get Owner Company",
+      "type": "n8n-nodes-jetnet.jetNet",
+      "typeVersion": 1,
+      "position": [650, 300],
+      "credentials": {
+        "jetNetApi": {
+          "id": "1",
+          "name": "JetNet API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "market",
+        "operation": "getAircraftValuation",
+        "aircraftId": "{{ $node['Get Aircraft For Sale'].json.aircraftId }}",
+        "securityToken": "{{ $credentials.jetNetApi.apiToken }}"
+      },
+      "name": "Get Aircraft Valuation",
+      "type": "n8n-nodes-jetnet.jetNet",
+      "typeVersion": 1,
+      "position": [850, 300],
+      "credentials": {
+        "jetNetApi": {
+          "id": "1",
+          "name": "JetNet API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "aircraftRegistration",
+              "value": "{{ $node['Get Aircraft For Sale'].json.registration }}"
+            },
+            {
+              "name": "aircraftModel",
+              "value": "{{ $node['Get Aircraft For Sale'].json.model }}"
+            },
+            {
+              "name": "aircraftYear",
+              "value": "{{ $node['Get Aircraft For Sale'].json.year }}"
+            },
+            {
+              "name": "ownerCompany",
+              "value": "{{ $node['Get Owner Company'].json.companyName }}"
+            },
+            {
+              "name": "ownerLocation",
+              "value": "{{ $node['Get Owner Company'].json.city }}, {{ $node['Get Owner Company'].json.country }}"
+            },
+            {
+              "name": "estimatedValue",
+              "value": "{{ $node['Get Aircraft Valuation'].json.estimatedValue }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Combine Data",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3,
+      "position": [1050, 300]
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get Aircraft For Sale",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Aircraft For Sale": {
+      "main": [
+        [
+          {
+            "node": "Get Owner Company",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Owner Company": {
+      "main": [
+        [
+          {
+            "node": "Get Aircraft Valuation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Aircraft Valuation": {
+      "main": [
+        [
+          {
+            "node": "Combine Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {},
+  "staticData": {}
+}

@@ -1,0 +1,100 @@
+{
+  "name": "JetNet Contact Operations Test",
+  "nodes": [
+    {
+      "parameters": {},
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "resource": "contact",
+        "operation": "getContactList",
+        "securityToken": "{{ $credentials.jetNetApi.apiToken }}",
+        "additionalFields": {
+          "pageNumber": 1,
+          "pageSize": 10
+        }
+      },
+      "name": "Get Contact List",
+      "type": "n8n-nodes-jetnet.jetNet",
+      "typeVersion": 1,
+      "position": [450, 200],
+      "credentials": {
+        "jetNetApi": {
+          "id": "1",
+          "name": "JetNet API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "contact",
+        "operation": "getContactById",
+        "contactId": "{{ $json.items[0].contactId }}",
+        "securityToken": "{{ $credentials.jetNetApi.apiToken }}"
+      },
+      "name": "Get Contact Details",
+      "type": "n8n-nodes-jetnet.jetNet",
+      "typeVersion": 1,
+      "position": [650, 200],
+      "credentials": {
+        "jetNetApi": {
+          "id": "1",
+          "name": "JetNet API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "contact",
+        "operation": "getContactPhoneNumbers",
+        "contactId": "{{ $json.items[0].contactId }}",
+        "securityToken": "{{ $credentials.jetNetApi.apiToken }}"
+      },
+      "name": "Get Phone Numbers",
+      "type": "n8n-nodes-jetnet.jetNet",
+      "typeVersion": 1,
+      "position": [650, 350],
+      "credentials": {
+        "jetNetApi": {
+          "id": "1",
+          "name": "JetNet API"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get Contact List",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Contact List": {
+      "main": [
+        [
+          {
+            "node": "Get Contact Details",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get Phone Numbers",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {},
+  "staticData": {}
+}

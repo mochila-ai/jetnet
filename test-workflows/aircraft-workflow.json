@@ -1,0 +1,102 @@
+{
+  "name": "JetNet Aircraft Operations Test",
+  "nodes": [
+    {
+      "parameters": {},
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "resource": "aircraft",
+        "operation": "getAircraftList",
+        "securityToken": "{{ $credentials.jetNetApi.apiToken }}",
+        "additionalFields": {
+          "pageNumber": 1,
+          "pageSize": 10
+        }
+      },
+      "name": "Get Aircraft List",
+      "type": "n8n-nodes-jetnet.jetNet",
+      "typeVersion": 1,
+      "position": [450, 200],
+      "credentials": {
+        "jetNetApi": {
+          "id": "1",
+          "name": "JetNet API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "aircraft",
+        "operation": "getAircraftById",
+        "aircraftId": "{{ $json.items[0].aircraftId }}",
+        "securityToken": "{{ $credentials.jetNetApi.apiToken }}"
+      },
+      "name": "Get Aircraft Details",
+      "type": "n8n-nodes-jetnet.jetNet",
+      "typeVersion": 1,
+      "position": [650, 200],
+      "credentials": {
+        "jetNetApi": {
+          "id": "1",
+          "name": "JetNet API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "aircraft",
+        "operation": "getAircraftListPaged",
+        "securityToken": "{{ $credentials.jetNetApi.apiToken }}",
+        "pageNumber": 1,
+        "pageSize": 50,
+        "returnAll": true
+      },
+      "name": "Get All Aircraft (Paginated)",
+      "type": "n8n-nodes-jetnet.jetNet",
+      "typeVersion": 1,
+      "position": [450, 400],
+      "credentials": {
+        "jetNetApi": {
+          "id": "1",
+          "name": "JetNet API"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get Aircraft List",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get All Aircraft (Paginated)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Aircraft List": {
+      "main": [
+        [
+          {
+            "node": "Get Aircraft Details",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {},
+  "staticData": {}
+}

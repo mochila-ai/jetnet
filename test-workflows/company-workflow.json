@@ -1,0 +1,123 @@
+{
+  "name": "JetNet Company Operations Test",
+  "nodes": [
+    {
+      "parameters": {},
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "resource": "company",
+        "operation": "getCompanyList",
+        "securityToken": "{{ $credentials.jetNetApi.apiToken }}",
+        "additionalFields": {
+          "pageNumber": 1,
+          "pageSize": 10
+        }
+      },
+      "name": "Get Company List",
+      "type": "n8n-nodes-jetnet.jetNet",
+      "typeVersion": 1,
+      "position": [450, 200],
+      "credentials": {
+        "jetNetApi": {
+          "id": "1",
+          "name": "JetNet API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "company",
+        "operation": "getCompanyById",
+        "companyId": "{{ $json.items[0].companyId }}",
+        "securityToken": "{{ $credentials.jetNetApi.apiToken }}"
+      },
+      "name": "Get Company Details",
+      "type": "n8n-nodes-jetnet.jetNet",
+      "typeVersion": 1,
+      "position": [650, 200],
+      "credentials": {
+        "jetNetApi": {
+          "id": "1",
+          "name": "JetNet API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "company",
+        "operation": "getCompanyContacts",
+        "companyId": "{{ $json.items[0].companyId }}",
+        "securityToken": "{{ $credentials.jetNetApi.apiToken }}"
+      },
+      "name": "Get Company Contacts",
+      "type": "n8n-nodes-jetnet.jetNet",
+      "typeVersion": 1,
+      "position": [650, 350],
+      "credentials": {
+        "jetNetApi": {
+          "id": "1",
+          "name": "JetNet API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "company",
+        "operation": "getCompanyHistory",
+        "companyId": "{{ $json.items[0].companyId }}",
+        "securityToken": "{{ $credentials.jetNetApi.apiToken }}"
+      },
+      "name": "Get Company History",
+      "type": "n8n-nodes-jetnet.jetNet",
+      "typeVersion": 1,
+      "position": [650, 500],
+      "credentials": {
+        "jetNetApi": {
+          "id": "1",
+          "name": "JetNet API"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get Company List",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Company List": {
+      "main": [
+        [
+          {
+            "node": "Get Company Details",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get Company Contacts",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get Company History",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {},
+  "staticData": {}
+}

@@ -1,0 +1,89 @@
+{
+  "name": "JetNet Market Operations Test",
+  "nodes": [
+    {
+      "parameters": {},
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "resource": "market",
+        "operation": "getModelIntelligence",
+        "modelName": "Citation X",
+        "securityToken": "{{ $credentials.jetNetApi.apiToken }}"
+      },
+      "name": "Get Model Intelligence",
+      "type": "n8n-nodes-jetnet.jetNet",
+      "typeVersion": 1,
+      "position": [450, 200],
+      "credentials": {
+        "jetNetApi": {
+          "id": "1",
+          "name": "JetNet API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "market",
+        "operation": "getAircraftMakeList",
+        "securityToken": "{{ $credentials.jetNetApi.apiToken }}"
+      },
+      "name": "Get Aircraft Makes",
+      "type": "n8n-nodes-jetnet.jetNet",
+      "typeVersion": 1,
+      "position": [450, 350],
+      "credentials": {
+        "jetNetApi": {
+          "id": "1",
+          "name": "JetNet API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "market",
+        "operation": "getCountryList",
+        "securityToken": "{{ $credentials.jetNetApi.apiToken }}"
+      },
+      "name": "Get Country List",
+      "type": "n8n-nodes-jetnet.jetNet",
+      "typeVersion": 1,
+      "position": [450, 500],
+      "credentials": {
+        "jetNetApi": {
+          "id": "1",
+          "name": "JetNet API"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get Model Intelligence",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get Aircraft Makes",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get Country List",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {},
+  "staticData": {}
+}

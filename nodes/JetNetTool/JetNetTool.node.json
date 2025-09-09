@@ -1,0 +1,36 @@
+{
+	"node": "n8n-nodes-jetnet.jetNetTool",
+	"nodeVersion": "1.0",
+	"codexVersion": "1.0",
+	"categories": [
+		"Development",
+		"Data & Storage"
+	],
+	"subcategories": {
+		"Development": [
+			"AI Agents & Agents"
+		],
+		"Data & Storage": [
+			"Databases"
+		]
+	},
+	"resources": {
+		"primaryDocumentation": [
+			{
+				"url": "https://jetnetconnect.com/api-documentation"
+			}
+		],
+		"credentialDocumentation": [
+			{
+				"url": "https://jetnetconnect.com/api-authentication"
+			}
+		]
+	},
+	"alias": [
+		"Aviation",
+		"Aircraft",
+		"JetNet",
+		"Flight Data",
+		"Aviation Intelligence"
+	]
+}

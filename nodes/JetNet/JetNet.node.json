@@ -1,0 +1,23 @@
+{
+	"node": "n8n-nodes-jetnet.jetNet",
+	"nodeVersion": "1.0",
+	"codexVersion": "1.0",
+	"categories": ["Data & Storage", "Development"],
+	"icon": "file:JetNet.svg",
+	"resources": {
+		"credentialDocumentation": [
+			{
+				"url": "https://jetnet.com/products/jetnet-api.html"
+			}
+		],
+		"primaryDocumentation": [
+			{
+				"url": "https://customer.jetnetconnect.com/swagger"
+			}
+		]
+	},
+	"alias": ["JetNet", "Aviation", "Aircraft"],
+	"subcategories": {
+		"Data & Storage": ["Databases", "Data Analysis"]
+	}
+}

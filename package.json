@@ -1,0 +1,60 @@
+{
+  "name": "n8n-nodes-jetnet",
+  "version": "0.1.0",
+  "description": "n8n nodes for JetNet API integration",
+  "keywords": [
+    "n8n",
+    "nodemation",
+    "nodes",
+    "workflow",
+    "jetnet",
+    "aviation"
+  ],
+  "license": "MIT",
+  "homepage": "https://jetnet.com",
+  "author": {
+    "name": "Matt Busi",
+    "email": "matt@shadowrock.io"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/n8n-nodes-jetnet.git"
+  },
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "format": "prettier --write '**/*.ts'",
+    "lint": "eslint nodes credentials --ext .ts",
+    "lintfix": "eslint nodes credentials --ext .ts --fix",
+    "prepublishOnly": "npm run build && npm run lint -c .eslintrc.prepublish.js nodes credentials package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "credentials": [
+      "dist/credentials/JetNetApi.credentials.js"
+    ],
+    "nodes": [
+      "dist/nodes/JetNet/JetNet.node.js",
+      "dist/nodes/JetNetTool/JetNetTool.node.js"
+    ]
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@typescript-eslint/eslint-plugin": "^6.13.0",
+    "@typescript-eslint/parser": "^6.13.0",
+    "eslint": "^8.54.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-n8n-nodes-base": "^1.16.1",
+    "n8n-core": "^1.19.0",
+    "n8n-workflow": "^1.19.0",
+    "prettier": "^3.1.0",
+    "typescript": "^5.9.2"
+  },
+  "peerDependencies": {
+    "n8n-workflow": "*"
+  }
+}
