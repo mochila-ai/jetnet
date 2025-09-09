@@ -1,6 +1,6 @@
 # JetNet n8n Integration Nodes
 
-[![npm version](https://badge.fury.io/js/n8n-nodes-jetnet.svg)](https://www.npmjs.com/package/n8n-nodes-jetnet)
+[![npm version](https://badge.fury.io/js/%40mochila%2Fn8n-nodes-jetnet.svg)](https://www.npmjs.com/package/@mochila/n8n-nodes-jetnet)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![n8n](https://img.shields.io/badge/n8n-compatible-orange.svg)](https://n8n.io)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue.svg)](https://www.typescriptlang.org/)
@@ -99,7 +99,7 @@ npm install n8n-nodes-jetnet
 # For Docker-based n8n installations
 docker exec -it <container-id> /bin/sh
 cd /home/node/.n8n/custom
-npm install n8n-nodes-jetnet
+npm install @mochila/n8n-nodes-jetnet
 docker restart <container-id>
 ```
 
@@ -108,7 +108,7 @@ docker restart <container-id>
 ```bash
 # For local n8n installations
 cd ~/.n8n/custom
-npm install n8n-nodes-jetnet
+npm install @mochila/n8n-nodes-jetnet
 # Restart n8n
 ```
 
