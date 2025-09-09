@@ -765,13 +765,14 @@ class JetNetApiTool extends Tool {
 			// Build the endpoint based on resource and operation
 			if (this.resource === 'aircraft') {
 				switch (this.operation) {
-					case 'get':
+					case 'get': {
 						const aircraftId = parsedInput.aircraftId || parsedInput.id || '';
 						if (!aircraftId) {
 							throw new Error('Aircraft ID is required for this operation');
 						}
 						endpoint = `/api/Aircraft/getAircraft/${aircraftId}`;
 						break;
+					}
 					case 'getList':
 						endpoint = '/api/Aircraft/getAircraftList';
 						method = 'POST';
@@ -899,13 +900,14 @@ class JetNetApiTool extends Tool {
 				}
 			} else if (this.resource === 'company') {
 				switch (this.operation) {
-					case 'get':
+					case 'get': {
 						const companyId = parsedInput.companyId || parsedInput.id || '';
 						if (!companyId) {
 							throw new Error('Company ID is required for this operation');
 						}
 						endpoint = `/api/Company/getCompany/${companyId}`;
 						break;
+					}
 					case 'getList':
 						endpoint = '/api/Company/getCompanyList';
 						method = 'POST';
@@ -953,13 +955,14 @@ class JetNetApiTool extends Tool {
 				}
 			} else if (this.resource === 'contact') {
 				switch (this.operation) {
-					case 'get':
+					case 'get': {
 						const contactId = parsedInput.contactId || parsedInput.id || '';
 						if (!contactId) {
 							throw new Error('Contact ID is required for this operation');
 						}
 						endpoint = `/api/Contact/getContact/${contactId}`;
 						break;
+					}
 					case 'getAircraftRelationships':
 						endpoint = `/api/Contact/getContAircraftRelationships/${parsedInput.contactId || parsedInput.id}`;
 						break;
