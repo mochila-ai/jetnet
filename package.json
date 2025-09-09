@@ -26,10 +26,20 @@
     "flight-data",
     "aerospace"
   ],
-  "license": "MIT",
+  "license": "Apache-2.0",
   "homepage": "https://github.com/mochila-ai/jetnet",
   "author": "Mochila",
   "publisher": "Mochila",
+  "contributors": [
+    {
+      "name": "Matt Busi",
+      "url": "https://github.com/mtebusi"
+    }
+  ],
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/mochila-ai"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mochila-ai/jetnet.git"

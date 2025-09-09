@@ -1,0 +1,40 @@
+JetNet n8n Integration Nodes
+Copyright 2025 Matt Busi (Mochila AI)
+
+This product includes software developed by Matt Busi (Mochila AI)
+(https://github.com/mochila-ai/jetnet).
+
+===========================================================================
+Third-Party Software Notices
+===========================================================================
+
+This software integrates with the following third-party services:
+
+1. JetNet API (https://www.jetnet.com)
+   JetNet® is a registered trademark of JetNet, LLC.
+   This project is an independent integration and is not affiliated with,
+   endorsed by, or sponsored by JetNet, LLC.
+
+2. n8n Workflow Automation Platform (https://n8n.io)
+   This project creates custom nodes for the n8n platform.
+   n8n is licensed under the Sustainable Use License.
+
+===========================================================================
+Trademark Notices
+===========================================================================
+
+- JetNet® is a registered trademark of JetNet, LLC
+- n8n® is a registered trademark of n8n GmbH
+- All other trademarks are the property of their respective owners
+
+===========================================================================
+Contact Information
+===========================================================================
+
+Project Maintainer: Matt Busi
+Organization: Mochila AI
+GitHub: https://github.com/mtebusi
+Repository: https://github.com/mochila-ai/jetnet
+
+For questions about this integration, please open an issue on GitHub.
+For official JetNet API support, visit: https://www.jetnet.com/support

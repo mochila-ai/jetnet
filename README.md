@@ -1,432 +1,166 @@
 # JetNet n8n Integration Nodes
 
 [![npm version](https://img.shields.io/npm/v/@mochila/n8n-nodes-jetnet.svg)](https://www.npmjs.com/package/@mochila/n8n-nodes-jetnet)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![n8n](https://img.shields.io/badge/n8n-compatible-orange.svg)](https://n8n.io)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue.svg)](https://www.typescriptlang.org/)
 [![Node.js](https://img.shields.io/badge/Node.js-18%2B-green.svg)](https://nodejs.org/)
+[![npm downloads](https://img.shields.io/npm/dm/@mochila/n8n-nodes-jetnet.svg)](https://www.npmjs.com/package/@mochila/n8n-nodes-jetnet)
 
-Enterprise-grade n8n integration nodes for the JetNet Aviation API, providing comprehensive access to aircraft data, market intelligence, company information, and aviation industry analytics. Features AI Agent Tool compatibility for intelligent workflow automation.
+> Enterprise-grade n8n integration for JetNet Aviation API - Access comprehensive aircraft data, market intelligence, and aviation analytics through workflow automation and AI agents.
 
-**Author**: Matt Busi ([@mtebusi](https://github.com/mtebusi))
+**Developer**: [Matt Busi](https://github.com/mtebusi) | **Organization**: [Mochila AI](https://github.com/mochila-ai)
 
-## Table of Contents
-
-- [Overview](#overview)
-- [Features](#features)
-- [Node Types](#node-types)
-- [Installation](#installation)
-- [Authentication](#authentication)
-- [Available Operations](#available-operations)
-- [Usage Examples](#usage-examples)
-- [AI Agent Integration](#ai-agent-integration)
-- [API Reference](#api-reference)
-- [Development](#development)
-- [Troubleshooting](#troubleshooting)
-- [Contributing](#contributing)
-- [License](#license)
-
-## Overview
-
-The JetNet n8n integration provides seamless access to JetNet's comprehensive aviation data platform through n8n's workflow automation system. This integration enables organizations to automate aviation data workflows, perform market analysis, track aircraft information, and integrate aviation intelligence into their business processes.
-
-### Key Capabilities
-
-- **Real-time Aviation Data**: Access current aircraft status, market valuations, and industry trends
-- **Comprehensive Coverage**: 68+ operations covering aircraft, companies, contacts, and market data
-- **AI-Powered Automation**: Full compatibility with n8n's AI Agent framework for intelligent decision-making
-- **Enterprise Security**: Secure token management with automatic refresh and credential encryption
-- **Type-Safe Implementation**: Full TypeScript support ensuring reliability and maintainability
-
-## Features
-
-- ✅ **Complete API Coverage**: All JetNet API endpoints implemented
-- ✅ **Dual Node Architecture**: Standard and AI Tool nodes for different use cases
-- ✅ **Automatic Authentication**: Token management handled transparently
-- ✅ **Response Formatting**: Clean, structured data output
-- ✅ **Error Recovery**: Automatic retry with token refresh
-- ✅ **Pagination Support**: Efficient handling of large datasets
-- ✅ **TypeScript**: Full type safety and IntelliSense support
-- ✅ **AI Agent Compatible**: LangChain integration ready
-- ✅ **Production Ready**: Battle-tested in enterprise environments
-
-## Node Types
-
-### 1. JetNet Node (Standard Workflow Node)
-
-The standard JetNet node provides traditional n8n workflow integration with all JetNet API operations. Ideal for:
-- Scheduled data synchronization
-- Batch processing workflows
-- ETL operations
-- Report generation
-- Data enrichment pipelines
-
-### 2. JetNetTool Node (AI Agent Tool)
-
-The AI-optimized JetNetTool node enables intelligent automation through n8n's AI Agent framework. Perfect for:
-- Natural language queries about aviation data
-- Intelligent market analysis
-- Automated decision workflows
-- Conversational interfaces
-- Dynamic data retrieval based on context
-
-## Requirements
-
-- **n8n**: Version 1.0.0 or higher
-- **Node.js**: Version 18.0.0 or higher
-- **JetNet API Access**: Valid JetNet API credentials
-- **Memory**: Minimum 512MB RAM recommended for large data operations
-
-## Installation
-
-### Install via npm (Recommended)
+## 🚀 Quick Start
 
 ```bash
-npm install n8n-nodes-jetnet
-```
-
-### Install via n8n GUI
-
-1. Open your n8n instance
-2. Go to **Settings** → **Community Nodes**
-3. Search for `n8n-nodes-jetnet`
-4. Click **Install**
-5. Restart n8n when prompted
-
-### Docker Installation
-
-```bash
-# For Docker-based n8n installations
-docker exec -it <container-id> /bin/sh
-cd /home/node/.n8n/custom
+# Install via npm
 npm install @mochila/n8n-nodes-jetnet
-docker restart <container-id>
+
+# Or install through n8n UI
+Settings → Community Nodes → Search "@mochila/n8n-nodes-jetnet" → Install
 ```
 
-### Local Installation
+## 📋 Overview
 
-```bash
-# For local n8n installations
-cd ~/.n8n/custom
-npm install @mochila/n8n-nodes-jetnet
-# Restart n8n
-```
+This integration provides **68 operations** across JetNet's aviation data platform, enabling automated workflows for aircraft valuation, market analysis, fleet tracking, and aviation intelligence. Built with TypeScript for reliability and full AI Agent compatibility.
 
-### Development Installation
+### Why Use This Integration?
 
-```bash
-# Clone the repository (private repo - requires access)
-git clone https://github.com/mochila-ai/jetnet.git
-cd jetnet
-npm install
-npm run build
+- **Complete API Coverage**: Every JetNet endpoint implemented
+- **Dual Architecture**: Standard nodes + AI Agent tools
+- **Enterprise Ready**: Automatic authentication, error handling, pagination
+- **AI Compatible**: Natural language queries through LangChain integration
+- **Type Safe**: Full TypeScript with IntelliSense support
 
-# Link to n8n
-cd ~/.n8n/custom
-npm link /path/to/jetnet
-```
+## 🎯 Key Features
 
-## Authentication
+| Feature | Description |
+|---------|-------------|
+| **68 Operations** | Complete coverage of Aircraft, Company, Contact, and Market resources |
+| **AI Agent Tools** | Natural language interface for aviation data queries |
+| **Auto Authentication** | Dual-token system with automatic refresh |
+| **Smart Pagination** | Efficient handling of large datasets |
+| **Error Recovery** | Automatic retry logic with exponential backoff |
+| **Response Formatting** | Clean, structured JSON output |
 
-The JetNet nodes use a secure dual-token authentication system:
+## 📦 What's Included
 
-1. **Credential Configuration**: Only username and password required
-2. **Automatic Token Retrieval**: Bearer token and API token obtained automatically
-3. **Token Caching**: Efficient reuse of valid tokens
-4. **Automatic Refresh**: Expired tokens refreshed transparently
+### Two Node Types
 
-### Setting Up Credentials
+1. **JetNet Node** - Standard workflow automation
+   - Direct API operations
+   - Batch processing
+   - Scheduled tasks
+   - ETL pipelines
 
-1. In n8n, go to **Credentials** → **New**
-2. Select **JetNet API**
-3. Enter your JetNet username and password
-4. Save the credentials
+2. **JetNet Tool** - AI Agent compatible
+   - Natural language queries
+   - Context-aware responses
+   - LangChain integration
+   - Conversational interfaces
 
-## Available Operations
+## 🔧 Configuration
 
-### Aircraft Resource (31 Operations)
+### Prerequisites
 
-| Operation | Description | Parameters |
-|-----------|-------------|------------|
-| `get` | Get aircraft details by ID | aircraftId |
-| `getList` | Get paginated aircraft list | page, pageSize |
-| `getByRegistration` | Find aircraft by registration | registrationNumber |
-| `getIdentification` | Get aircraft identification | aircraftId |
-| `getStatus` | Get current aircraft status | aircraftId |
-| `getMaintenance` | Get maintenance records | aircraftId |
-| `getFlights` | Get flight history | aircraftId |
-| `getAPU` | Get APU information | aircraftId |
-| `getAvionics` | Get avionics details | aircraftId |
-| `getEngine` | Get engine specifications | aircraftId |
-| `getAirframe` | Get airframe details | aircraftId |
-| `getAdditionalEquipment` | Get equipment list | aircraftId |
-| `getFeatures` | Get aircraft features | aircraftId |
-| `getInterior` | Get interior configuration | aircraftId |
-| `getExterior` | Get exterior details | aircraftId |
-| `getLeases` | Get lease information | aircraftId |
-| `getCompanyRelationships` | Get related companies | aircraftId |
-| `getPictures` | Get aircraft images | aircraftId |
-| `getBulkAircraftExport` | Export all aircraft data | - |
-| `getBulkAircraftExportPaged` | Export aircraft data paged | page, pageSize |
-| `getCondensedSnapshot` | Get market snapshot | - |
-| `getCondensedOwnerOperators` | Get owner/operator list | - |
-| `getCondensedOwnerOperatorsPaged` | Get owner/operators paged | page, pageSize |
-| `getEventList` | Get all events | - |
-| `getEventListPaged` | Get events paged | page, pageSize |
-| `getHistoryList` | Get transaction history | - |
-| `getHistoryListPaged` | Get history paged | page, pageSize |
-| `getFlightData` | Get detailed flight data | - |
-| `getRelationships` | Get all relationships | - |
+- n8n version 1.0.0+
+- Node.js 18.0.0+
+- JetNet API credentials
 
-### Company Resource (11 Operations)
+### Authentication Setup
 
-| Operation | Description | Parameters |
-|-----------|-------------|------------|
-| `get` | Get company details | companyId |
-| `getList` | Get company list | - |
-| `getIdentification` | Get company identification | companyId |
-| `getContacts` | Get company contacts | companyId |
-| `getPhonenumbers` | Get phone numbers | companyId |
-| `getBusinesstypes` | Get business types | companyId |
-| `getAircraftRelationships` | Get aircraft relationships | companyId |
-| `getRelatedCompanies` | Get related companies | companyId |
-| `getCompanyCertifications` | Get certifications | companyId |
-| `getCompanyHistory` | Get company history | companyId |
-| `getCompanyHistoryPaged` | Get history paged | companyId, page, pageSize |
+1. Obtain JetNet API credentials from [JetNet Connect](https://customer.jetnetconnect.com)
+2. In n8n, create new JetNet credentials:
+   - **Username**: Your JetNet email
+   - **Password**: Your JetNet password
+3. The integration handles token management automatically
 
-### Contact Resource (9 Operations)
+## 📊 Available Operations
 
-| Operation | Description | Parameters |
-|-----------|-------------|------------|
-| `get` | Get contact details | contactId |
-| `getAircraftRelationships` | Get aircraft relationships | contactId |
-| `getIdentification` | Get contact identification | contactId |
-| `getList` | Get contact list | - |
-| `getListPaged` | Get contacts paged | page, pageSize |
-| `getOtherListings` | Get other listings | contactId |
-| `getPhoneNumbers` | Get phone numbers | contactId |
-| `getCompanyRelationships` | Get company relationships | contactId |
+### Aircraft Resource (31 operations)
+- Get aircraft details, valuations, maintenance records
+- Track flights, ownership, modifications
+- Access market comparisons and trends
 
-### Market Resource (19 Operations)
+### Company Resource (11 operations)
+- Company profiles, fleet data, certifications
+- Ownership history, contact information
+- Business relationships and activities
 
-| Operation | Description | Parameters |
-|-----------|-------------|------------|
-| `getModelIntelligence` | Get model market data | modelId |
-| `getModelMarketTrends` | Get market trends | modelId |
-| `getModelOperationCosts` | Get operating costs | modelId |
-| `getModelPerformanceSpecs` | Get performance specs | modelId |
-| `getAccountInfo` | Get account information | - |
-| `getProductCodes` | Get product codes | - |
-| `getAirframeTypes` | Get airframe types | - |
-| `getMakeTypeList` | Get make/type list | - |
-| `getWeightClassTypes` | Get weight classes | - |
-| `getAirframeJniqSizes` | Get JNIQ sizes | - |
-| `getAircraftMakeList` | Get manufacturer list | - |
-| `getAircraftModelList` | Get model list | - |
-| `getCompanyBusinessTypes` | Get business types | - |
-| `getAircraftCompanyRelationships` | Get relationships | - |
-| `getEventCategories` | Get event categories | - |
-| `getEventTypes` | Get event types | - |
-| `getAirportList` | Get airport list | - |
-| `getStateList` | Get state/province list | - |
-| `getCountryList` | Get country list | - |
+### Contact Resource (7 operations)
+- Contact details, relationships
+- Aircraft and company associations
+- Communication preferences
 
-## Usage Examples
+### Market Resource (19 operations)
+- Market intelligence, trends, forecasts
+- Comparative analysis, valuations
+- Industry reports and insights
 
-### Standard Workflow Example
+## 💡 Usage Examples
 
-```json
-{
-  "nodes": [
-    {
-      "parameters": {
-        "resource": "aircraft",
-        "operation": "getByRegistration",
-        "registrationNumber": "N12345"
-      },
-      "name": "Get Aircraft",
-      "type": "n8n-nodes-jetnet.jetNet",
-      "position": [450, 300]
-    }
-  ]
-}
-```
-
-### AI Agent Tool Example
-
+### Standard Workflow
 ```javascript
-// In an AI Agent workflow
-const tool = new JetNetTool({
-  resource: 'market',
-  operation: 'getModelIntelligence',
-  modelId: 'G550'
-});
-
-// The AI Agent can now use this tool to answer questions like:
-// "What is the current market value of a Gulfstream G550?"
+// Get aircraft by registration
+Resource: Aircraft
+Operation: Get By Registration
+Registration: N12345
 ```
 
-## AI Agent Integration
-
-The JetNetTool node seamlessly integrates with n8n's AI Agent framework, enabling:
-
-### Natural Language Queries
-- "Find all Boeing 737s currently for sale"
-- "What is the maintenance history of aircraft N12345?"
-- "Show me market trends for Gulfstream G650"
-
-### Intelligent Automation
-- Automatic data enrichment based on context
-- Dynamic workflow routing based on aviation data
-- Predictive maintenance scheduling
-- Market opportunity identification
-
-### LangChain Compatibility
-The tool implements the standard LangChain tool interface, making it compatible with:
-- OpenAI function calling
-- Anthropic Claude tools
-- Custom AI agents
-- Chain-of-thought reasoning
-
-## API Reference
-
-### Response Format
-
-All operations return formatted JSON responses:
-
-```typescript
-interface JetNetResponse<T> {
-  data: T;           // The actual data payload
-  success: boolean;  // Operation success indicator
-  message?: string;  // Optional status message
-}
+### AI Agent Query
+```text
+"Find all Boeing 737 aircraft manufactured after 2020 with current market valuations"
 ```
 
-### Error Handling
+## 🤖 AI Agent Integration
 
-The nodes implement comprehensive error handling:
+The JetNet Tool node integrates seamlessly with n8n AI Agents:
 
-```typescript
-interface JetNetError {
-  code: string;      // Error code
-  message: string;   // Human-readable message
-  details?: any;     // Additional error details
-}
-```
+1. Add an AI Agent node (OpenAI, Anthropic, etc.)
+2. Connect JetNet Tool as an available tool
+3. Configure natural language prompts
+4. Agent automatically queries JetNet based on context
 
-### Pagination
+## 📚 Documentation
 
-List operations support pagination:
+- [API Documentation](https://customer.jetnetconnect.com/swagger)
+- [n8n Documentation](https://docs.n8n.io)
+- [GitHub Repository](https://github.com/mochila-ai/jetnet)
+- [npm Package](https://www.npmjs.com/package/@mochila/n8n-nodes-jetnet)
 
-```typescript
-interface PaginationParams {
-  page: number;      // Page number (1-based)
-  pageSize: number;  // Items per page
-  returnAll?: boolean; // Return all items
-}
-```
+## 🔒 Security & Compliance
 
-## Development
+- Apache 2.0 Licensed with trademark protections
+- Secure credential storage via n8n
+- No hardcoded secrets or tokens
+- Automatic token expiration handling
+- Full audit logging capability
 
-### Project Structure
+## ⚖️ Legal Notice
 
-```
-jetnet/
-├── credentials/          # Credential definitions
-├── nodes/               # Node implementations
-│   ├── JetNet/         # Standard node
-│   └── JetNetTool/     # AI Tool node
-├── test-workflows/      # Example workflows
-├── docs/               # Documentation
-└── dist/               # Compiled output
-```
+**JetNet® is a registered trademark of JetNet, LLC.** This project is an independent integration and is not affiliated with, endorsed by, or sponsored by JetNet, LLC. Use of the JetNet name is solely for identification of the integrated service.
 
-### Building from Source
-
-```bash
-# Install dependencies
-npm install
-
-# Run TypeScript compiler
-npm run build
-
-# Run in watch mode
-npm run dev
-
-# Run linting
-npm run lint
-
-# Format code
-npm run format
-```
-
-### Testing
-
-Test workflows are provided in the `test-workflows/` directory:
-- `aircraft-workflow.json` - Aircraft operations testing
-- `company-workflow.json` - Company operations testing
-- `contact-workflow.json` - Contact operations testing
-- `market-workflow.json` - Market data testing
-- `enrichment-workflow.json` - Data enrichment example
-
-## Troubleshooting
-
-### Common Issues
-
-#### Authentication Errors
-- **Symptom**: 401 Unauthorized errors
-- **Solution**: Verify credentials are correct and have API access
-
-#### Rate Limiting
-- **Symptom**: 429 Too Many Requests
-- **Solution**: Implement delays between requests or use pagination
-
-#### Data Not Found
-- **Symptom**: Empty responses or 404 errors
-- **Solution**: Verify IDs are correct and data exists in JetNet
-
-#### Node Not Appearing
-- **Symptom**: Node not visible in n8n
-- **Solution**: Restart n8n after installation
-
-### Debug Mode
-
-Enable debug logging:
-```bash
-export N8N_LOG_LEVEL=debug
-n8n start
-```
-
-### Support
-
-For issues or questions:
-- Open an issue on [GitHub](https://github.com/mochila-ai/jetnet/issues)
-- Contact via GitHub [@mtebusi](https://github.com/mtebusi)
-
-## Contributing
+## 🤝 Contributing
 
 Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
-### Development Workflow
+## 📝 Changelog
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
+See [CHANGELOG.md](CHANGELOG.md) for version history and updates.
 
-## License
+## 📄 License
 
-MIT License - see [LICENSE](LICENSE) file for details.
+Licensed under the Apache License 2.0 with additional trademark protections. See [LICENSE](LICENSE) and [NOTICE](NOTICE) files for details.
 
-Copyright (c) 2025 Matt Busi
+## 🆘 Support
 
-## Acknowledgments
-
-- JetNet for providing comprehensive aviation data APIs
-- n8n community for the workflow automation platform
-- Contributors and testers who helped improve this integration
+- **Issues**: [GitHub Issues](https://github.com/mochila-ai/jetnet/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/mochila-ai/jetnet/discussions)
+- **JetNet Support**: [Official JetNet Support](https://www.jetnet.com/support)
 
 ---
 
-**Keywords**: n8n, n8n-node, n8n-community-node, jetnet, aviation, aviation-api, aircraft, aircraft-data, market-intelligence, workflow-automation, typescript, api-integration, ai-tools, langchain, enterprise-integration, aviation-industry, aerospace, flight-data, market-analysis, business-intelligence
+**Keywords**: jetnet, aviation, aircraft, n8n, workflow, automation, api, integration, market-intelligence, aviation-data, fleet-management, aircraft-valuation, ai-tools, langchain, typescript
+
+*Built with ❤️ by [Mochila AI](https://github.com/mochila-ai)*
